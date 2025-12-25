@@ -3,13 +3,9 @@
 A lightweight browser-based study planner (HTML/CSS/JS) with a pastel/girly theme.
 
 Quick Start
-----------
-- Open `index.html` directly (double-click). If you see layout issues, serve with a local server:
 
-```powershell
-cd /d "c:\Users\mariem\OneDrive\Desktop\study-planner"
-python -m http.server 8000
-# then open http://localhost:8000 in your browser
+
+
 ```
 
 Files
