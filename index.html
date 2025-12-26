@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Planner ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Inline overrides to force calendar alignment (helps bypass caching) -->
+  <style id="inline-calendar-fix">
+    #calendar { display:block; }
+    .weekday-headers{ display:grid !important; grid-template-columns:repeat(7,1fr) !important; gap:10px !important; }
+    .calendar-grid{ display:grid !important; grid-template-columns:repeat(7,1fr) !important; gap:10px !important; }
+    .day{ min-height:140px !important; padding:18px 12px 12px 12px !important; }
+    .day .date{ position:relative !important; left:50% !important; transform:translateX(-50%) !important; top:0 !important; margin-bottom:8px !important; display:block !important; }
+    .day .preview{ margin-top:56px !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Study Planner ✨</h1>
+    <div class="header-controls">
+      <button id="exportBtn">Export</button>
+      <input id="importFile" type="file" accept="application/json" />
+      <button id="clearBtn">Clear Data</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Subjects</h2>
+        <form id="subjectForm">
+          <input id="subjectName" placeholder="Subject name" required />
+          <input id="subjectColor" type="color" value="#ffb6c1" title="Pick color" />
+          <input id="subjectHours" type="number" min="0" placeholder="Weekly hours" />
+          <button type="submit">Add</button>
+        </form>
+        <ul id="subjectsList"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Quick Add Event</h2>
+        <form id="quickEventForm">
+          <input id="eventTitle" placeholder="Title" required />
+          <select id="eventType">
+            <option value="exam">Exam</option>
+            <option value="holiday">Holiday</option>
+            <option value="task">Task</option>
+          </select>
+          <input id="eventDate" type="date" required />
+          <button type="submit">Add</button>
+        </form>
+      </section>
+
+      <section class="card small">
+        <h2>Weekly Planner</h2>
+        <label>Start <input id="weekStart" type="time" value="08:00"/></label>
+        <label>End <input id="weekEnd" type="time" value="20:00"/></label>
+        <button id="applyWeekTimes">Apply</button>
+        <div id="weekControls"></div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="top-row">
+        <div class="month-nav">
+          <button id="prevMonth">◀</button>
+          <h2 id="monthLabel"></h2>
+          <button id="nextMonth">▶</button>
+        </div>
+        <div class="today-info">
+          <div id="todayName"></div>
+          <div id="todayDate"></div>
+        </div>
+      </div>
+
+      <div id="calendar" class="calendar card">
+        <div class="weekday-headers" id="weekdayHeaders"></div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
+
+      <div class="card" id="dayDetails">
+        <h3 id="selectedDateLabel">Select a day</h3>
+        <div id="eventsList"></div>
+        <form id="addEventForm">
+          <input id="addTitle" placeholder="Title" required />
+          <select id="addType">
+            <option value="task">Task</option>
+            <option value="exam">Exam</option>
+            <option value="holiday">Holiday</option>
+          </select>
+          <select id="addSubject"></select>
+          <button type="submit">Add to day</button>
+        </form>
+      </div>
+
+      <div class="card" id="weeklyView">
+        <h3>Weekly Schedule</h3>
+        <div id="weekGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Study Planner — save/export your data anytime ✨</small>
+  </footer>
+
+<!-- Day modal -->
+<div id="dayModal" class="modal-hidden">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-card">
+    <button id="closeModal" class="modal-close">✕</button>
+    <h3 id="modalDateLabel">Date</h3>
+    <div id="modalEventsList"></div>
+    <form id="modalAddForm">
+      <input id="modalTitle" placeholder="Title" required />
+      <select id="modalType">
+        <option value="task">Task</option>
+        <option value="exam">Exam</option>
+        <option value="holiday">Holiday</option>
+      </select>
+      <select id="modalSubject"></select>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</div>
+  <script src="app.js"></script>
+</body>
+</html>

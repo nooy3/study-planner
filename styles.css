@@ -1,0 +1,64 @@
+:root{
+  --bg:#fff0f6;
+  --card:#fff;
+  --accent:#ff79c6;
+  --muted:#f7d9e6;
+  --text:#3b2b2b;
+}
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:var(--text)}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:linear-gradient(90deg,#ffd6e8,#ffeef6);box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+header h1{margin:0;font-weight:600;color:#6b2145}
+.header-controls{display:flex;gap:8px}
+.header-controls button, .header-controls input{padding:6px 10px;border-radius:8px;border:1px solid #ffd7ea;background:white}
+@media(max-width:600px){
+  header{flex-direction:column;gap:12px;padding:12px 18px}
+  .header-controls{flex-wrap:wrap;justify-content:center}
+}
+main{display:flex;gap:18px;padding:18px}
+.sidebar{width:320px}
+.content{flex:1}
+.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 20px rgba(107,33,69,0.06);margin-bottom:18px}
+.card.small{padding:10px}
+form{display:flex;gap:8px;flex-wrap:wrap}
+input,select,button{font-family:inherit}
+input[type="text"],input[type="date"],input[type="number"],input[type="time"],select{padding:8px;border-radius:8px;border:1px solid #f0cfe0}
+button{background:var(--accent);color:rgb(168, 69, 182);border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+#subjectsList{list-style:none;padding:0;margin:8px 0}
+#subjectsList li{display:flex;align-items:center;justify-content:space-between;padding:8px;border-radius:8px;background:linear-gradient(90deg,var(--muted),#fff);margin-bottom:6px}
+.month-nav{display:flex;align-items:center;gap:12px}
+#calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:12px}
+.weekday-headers{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px}
+.weekday-headers div{padding:6px;text-align:center;font-weight:600;color:#6b3b4b}
+.calendar-grid{display:grid;grid-template-columns:repeat(20,1fr);gap:12px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,8fr);gap:20px}
+.day{min-height:140px;border-radius:10px;padding:18px 12px 12px 12px;background:#fff;position:relative;display:flex;flex-direction:column}
+.day.other{opacity:0.6}
+.day .date{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-weight:700;background:linear-gradient(90deg,#ff79c6,#ffb6d6);color:white;padding:6px 10px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(107,33,69,0.10)}
+.day .preview{margin-top:62px;display:flex;flex-direction:column;gap:8px}
+.day .preview .item{display:block;width:100%;padding:8px 10px;border-radius:10px;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#fff4fb;box-shadow:0 4px 10px rgba(107,33,69,0.04);border-left:6px solid rgba(255,121,198,0.12)}
+.day .preview .item + .item{margin-top:8px}
+.day .preview .item.exam{background:linear-gradient(90deg,#fff0f6,#ffe7f3)}
+.day .preview .item.holiday{background:linear-gradient(90deg,#fff7f0,#fff2e6)}
+.day .preview .item.task{background:linear-gradient(90deg,#f7f0ff,#fbefff)}
+.day .preview .item.more{background:transparent;color:#6b3b4b;font-weight:600;box-shadow:none;border-left:0;padding:6px}
+.day .preview .more{font-size:12px;color:#6b3b4b}
+.day .markers{position:absolute;left:8px;bottom:8px;display:flex;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%}
+.today{outline:3px solid rgba(255,121,198,0.15)}
+.day.other .date{background:linear-gradient(90deg,#ffddea,#ffeef6);color:#6b3b4b;left:50%;transform:translateX(-50%)}
+#eventsList .event{display:flex;align-items:center;justify-content:space-between;padding:8px;border-radius:8px;margin:6px 0;border:1px dashed #ffd6e8}
+#weekGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.week-day{min-height:120px;padding:8px;border-radius:8px;background:linear-gradient(90deg,#fff,#fff9)}
+footer{padding:12px;text-align:center;color:#6b3b4b}
+@media(max-width:900px){.sidebar{display:none}.content{padding:0 12px}}
+
+/* Modal styles */
+.modal-hidden{display:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35)}
+.modal-card{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--card);padding:16px;border-radius:12px;max-width:420px;width:92%;box-shadow:0 10px 40px rgba(107,33,69,0.18);z-index:50}
+.modal-close{position:absolute;right:12px;top:12px;border:none;background:transparent;font-size:18px;cursor:pointer}
+#modalEventsList{max-height:240px;overflow:auto;margin:8px 0}
+#modalEventsList .event{padding:8px;border-radius:8px;background:#fff4fb;margin-bottom:8px;border-left:6px solid #ffd6ea}
+#modalAddForm{display:flex;gap:8px;flex-wrap:wrap}
+#modalAddForm input, #modalAddForm select{flex:1}
